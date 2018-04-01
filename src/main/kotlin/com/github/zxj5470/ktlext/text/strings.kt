@@ -1,35 +1,24 @@
 package com.github.zxj5470.ktlext.text
 
-import java.util.*
-
 /**
  * @author: zxj5470
  * @date: 2018/3/27
  */
-fun String.indicesOf(regex: String): List<Int> {
-	val ll = LinkedList<Int>()
-	var temp = -1
-	var b: Int
-	this.forEachIndexed { index, _ ->
-		b = this.indexOf(regex, index)
-		if (b > temp) {
-			temp = b
-			ll.add(temp)
+fun String.indicesOf(regex: String): List<Int> =
+		if (regex.isNotEmpty()) {
+			this.indicesOf(regex.first()).filter {
+				it == this.indexOf(regex, it)
+			}
+		} else {
+			emptyList()
 		}
-	}
-	return ll.toList()
-}
 
-fun String.countTimes(regex: String): Int {
-	var count = 0
-	var temp = -1
-	var b: Int
-	this.forEachIndexed { index, _ ->
-		b = this.indexOf(regex, index)
-		if (b > temp) {
-			temp = b
-			count++
+fun String.indicesOf(char: Char): List<Int> =
+		this.mapIndexedNotNull { index, c ->
+			if (c == char)
+				index
+			else null
 		}
-	}
-	return count
-}
+
+fun String.countTimes(regex: String): Int =
+		this.indicesOf(regex).size
