@@ -1,6 +1,7 @@
 package com.github.zxj5470.ktlext.text
 
 import com.github.zxj5470.ktlext.testing.*
+import org.intellij.lang.annotations.Language
 import org.junit.Test
 
 /**
@@ -20,7 +21,11 @@ class StringTesting {
 
 	@Test
 	fun testRegex() {
-		"asdfassdfasdf".indicesOf("[a-f]{3}", useRegex = true) shouldBe listOf(2, 7)
-		"asdfassdfasdf".indicesOf("asdd", useRegex = true) shouldBe emptyIntList
+		// index 2: dfa
+		// index 7: dfa
+		val regexStringA = "[a-f]{3}"
+		val regexStringB = "asdd"
+		"asdfassdfasdf".indicesOf(regexStringA, useRegex = true) shouldBe listOf(2, 7)
+		"asdfassdfasdf".indicesOf(regexStringB, useRegex = true) shouldBe emptyIntList
 	}
 }
