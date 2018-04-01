@@ -1,7 +1,7 @@
 # Kotlin Ext
 
 [![](https://jitpack.io/v/zxj5470/ktlext.svg)](https://jitpack.io/#zxj5470/ktlext)
-
+![Downloads](https://jitpack.io/v/zxj5470/ktlext/month.svg)
 
 - Step 1. Add `jitpack.io` as a maven repository :
 ```groovy
