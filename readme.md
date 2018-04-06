@@ -7,7 +7,7 @@
 ```groovy
 allprojects {
    repositories {
-      ...
+      //...
       maven { url 'https://jitpack.io' }
    }
 }
@@ -19,3 +19,6 @@ dependencies {
    compile 'com.github.zxj5470:ktlext:+'
 }
 ```
+
+## Usage
+see document is OK.
