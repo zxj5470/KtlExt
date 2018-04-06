@@ -28,4 +28,11 @@ class StringTesting {
 		"asdfassdfasdf".indicesOf(regexStringA, useRegex = true) shouldBe listOf(2, 7)
 		"asdfassdfasdf".indicesOf(regexStringB, useRegex = true) shouldBe emptyIntList
 	}
+
+	@Test
+	fun testLast() {
+		val oldString = "asdfassdfasdf"
+		oldString.replaceLast("df", "_ _") shouldBe "asdfassdfas_ _"
+		oldString.replaceLast("[a-f]{3}", "_ _", true) shouldBe "asdfass_ _sdf"
+	}
 }

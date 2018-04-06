@@ -25,3 +25,18 @@ fun String.indicesOf(char: Char): List<Int> =
 
 fun String.countTimes(string: String): Int =
 	this.indicesOf(string).size
+
+fun String.replaceLast(oldValue: String, newValue: String, useRegex: Boolean = false) =
+	this.indicesOf(oldValue, useRegex)
+		.takeIf { it.isNotEmpty() }
+		?.last()
+		?.let {
+			this.substring(0, it) +
+				this.substring(it).let {
+					if (useRegex)
+						it.replace(oldValue.toRegex(), newValue)
+					else
+						it.replace(oldValue, newValue)
+				}
+		}
+		?: this
