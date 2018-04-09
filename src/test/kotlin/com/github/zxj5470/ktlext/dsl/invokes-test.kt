@@ -24,4 +24,23 @@ class InvokesTest {
 			println("false")
 		}
 	}
+
+	interface I
+	class A : I {
+		fun a() = println("a")
+	}
+
+	@Test
+	fun testCast() {
+		fun getInstance(): I {
+			return A()
+		}
+
+		val i = getInstance()
+		// cannot success
+		i.castApply<Int> { println(this) }
+
+		// succeed
+		i.castApply<A> { this.a() }
+	}
 }

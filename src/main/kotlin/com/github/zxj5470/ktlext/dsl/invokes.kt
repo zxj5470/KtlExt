@@ -43,3 +43,31 @@ fun Boolean.orElse(block: () -> Unit): Boolean {
 	if (!this) block()
 	return this
 }
+
+/**
+ * @usage
+ *	```
+ *	interface I
+ *
+ * class A : I {
+ * 	fun a() = println("a")
+ * }
+ *
+ * fun getInstance(): I {
+ * 	return A()
+ * }
+ *
+ * val i = getInstance()
+ * i.castApply<A> { this.a() }
+ *
+ * // do nothing if the cast is unsuccessful
+ * i.castApply<Int> { println(this) }
+ *	```
+ * @receiver Any?
+ * @param block T.() -> Unit
+ */
+inline fun <reified T> Any?.castApply(block: T.() -> Unit) {
+	(this as? T)?.apply {
+		block()
+	}
+}
