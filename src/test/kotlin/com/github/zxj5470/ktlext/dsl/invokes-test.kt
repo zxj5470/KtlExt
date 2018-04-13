@@ -12,12 +12,17 @@ class InvokesTest {
 	fun testDSL() {
 		val t = true
 		val f = false
+		var s = 0
+
 		println("Run t:")
 		t {
+			s += 10
 			println("true")
 		}.orElse {
+			s += 100
 			println("false")
 		}
+		println(s)   // results: 10
 
 		println("Run f:")
 		f.orElse {
